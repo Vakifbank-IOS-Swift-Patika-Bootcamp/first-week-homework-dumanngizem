@@ -1,23 +1,14 @@
 import Foundation
 
-var array: [String] = ["Gizem", "Ezgi","Sercan","Mustafa"]
+let stringArray = ["Gizem", "Gizem", "Sercan", "Mustafa"]
+let intArray = [3, 6, 7, 7, 8]
 
-// MARK: - Xcode14 ile çalışan kısım
-for i in 0..<array.count {
-    print(array[i])
-    let character = array[i].split(separator: "")
-    print("\(character): \(character.count)")
-
+extension Sequence where Element: Hashable {
+    var frequency: [Element: Int] { reduce(into: [:]) { $0[$1, default: 0] += 1 } }
 }
 
-print(array.count)
+print(stringArray.frequency)
 
-// MARK: - Xcode13 ile çalışan kısım
-//for i in 0..<array.count {
-//    print(array[i])
-//    let character = array[i]
-//    print("\(character): \(character.count)")
-//
-//}
-//
-//print(array.count)
+for (key, value) in stringArray.frequency {
+    print(key, value)
+}
